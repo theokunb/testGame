@@ -48,9 +48,6 @@ public class Movement : MonoBehaviour
             _rigidBody.velocity = Vector3.MoveTowards(_rigidBody.velocity, Vector3.zero, _deceleration * Time.fixedDeltaTime);
         }
 
-        Debug.Log(_rigidBody.velocity.x / _maxSpeed);
-        Debug.Log(_rigidBody.velocity.y / _maxSpeed);
-
         _animator?.SetFloat(Constants.Animation.SpeedX, _rigidBody.velocity.x / _maxSpeed);
         _animator?.SetFloat(Constants.Animation.SpeedY, _rigidBody.velocity.z / _maxSpeed);
     }
