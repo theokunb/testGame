@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -29,16 +27,16 @@ public class CameraFollow : MonoBehaviour
         float targetX = _player.transform.position.x;
         float targetZ = _player.transform.position.z;
 
-        if(_player.transform.position.x < minX)
+        if (_player.transform.position.x < minX)
         {
             targetX = minX;
         }
-        else if(_player.transform.position.x > maxX)
+        else if (_player.transform.position.x > maxX)
         {
             targetX = maxX;
         }
 
-        if(_player.transform.position.z < minZ)
+        if (_player.transform.position.z < minZ)
         {
             targetZ = minZ;
         }

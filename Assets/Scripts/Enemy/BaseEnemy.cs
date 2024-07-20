@@ -26,6 +26,11 @@ public abstract class BaseEnemy : MonoBehaviour
         _animator?.SetFloat(Constants.Animation.Speed, _agent.velocity.magnitude / _agent.speed);
     }
 
+    public void SetPlayer(Player player)
+    {
+        _player = player;
+    }
+
     public abstract void Accept(IEnemyVisitor visitor);
 }
 

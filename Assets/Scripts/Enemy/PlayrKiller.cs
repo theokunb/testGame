@@ -16,4 +16,9 @@ public class PlayrKiller : MonoBehaviour
             _player.Die();
         }
     }
+
+    public void SetPlayer(Player player)
+    {
+        _player = player;
+    }
 }
