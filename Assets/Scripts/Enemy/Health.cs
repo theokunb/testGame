@@ -18,6 +18,11 @@ public class Health : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
+    public void SetEnemyVisitor(IEnemyVisitor enemyVisitor)
+    {
+        _enemyVisitor = enemyVisitor;
+    }
+
     public void TakeDamage(float damage)
     {
         if (damage < 0)

@@ -6,6 +6,14 @@ public class TerrainMap : MonoBehaviour, IMapService
 
     public Map MapBounds { get; private set;}
 
+    public bool IsInner(Vector3 point)
+    {
+        var xPos = point.x > MapBounds.Point1.x && point.x < MapBounds.Point2.x;
+        var zPos = point.z > MapBounds.Point1.z && point.z < MapBounds.Point2.z;
+
+        return xPos && zPos;
+    }
+
     private void Awake()
     {
         var point1 = _terrain.transform.position;
@@ -18,6 +26,8 @@ public class TerrainMap : MonoBehaviour, IMapService
 public interface IMapService
 {
     Map MapBounds { get; }
+
+    bool IsInner(Vector3 point);
 }
 
 public struct Map

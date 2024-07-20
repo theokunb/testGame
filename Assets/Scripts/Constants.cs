@@ -29,5 +29,7 @@ public static class Constants
         {
             public static string Bullet = Path.Combine("Prefabs", "Missile", "Bullet");
         }
+
+        public static string EnemyContainer = Path.Combine("Prefabs", "Enemy", "New enemy container");
     }
 }
