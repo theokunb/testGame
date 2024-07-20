@@ -15,5 +15,6 @@ public class TestInstaller : MonoInstaller
         Container.Bind<WeaponService>().AsSingle();
         Container.Bind<IMapService>().FromInstance(_terrainMap);
         Container.Bind<Player>().FromInstance(_player);
+        Container.Bind<Spawner>().AsSingle();
     }
 }
