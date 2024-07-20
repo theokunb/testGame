@@ -34,7 +34,12 @@ public class Missile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
+        if(other.TryGetComponent(out Health health))
+        {
+            health.TakeDamage(_damage);
+
+            gameObject.SetActive(false);
+        }
     }
 
     public Missile SetupSpeed(float speed)
