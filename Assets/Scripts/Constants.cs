@@ -4,12 +4,16 @@ public static class Constants
 {
     public static class Animation
     {
+        public static string Speed = nameof(Speed);
+
         public static string SpeedX = nameof(SpeedX);
         public static string SpeedY = nameof(SpeedY);
 
         public static int BaseLayerIndex = 0;
         public static int LegsLayer = 1;
         public static int PistolLayer = 2;
+
+        public static string Die = nameof(Die);
     }
 
     public static class Prefabs
