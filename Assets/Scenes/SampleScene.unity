@@ -1155,6 +1155,7 @@ GameObject:
   - component: {fileID: 5866666021824647176}
   - component: {fileID: 5866666021824647175}
   - component: {fileID: 5866666021824647177}
+  - component: {fileID: 5866666021824647178}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2523,7 +2524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _acceleration: 900
-  _deceleration: 2
+  _deceleration: 3
   _maxSpeed: 3
 --- !u!54 &5866666021824647176
 Rigidbody:
@@ -2565,6 +2566,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotationSpeed: 10
+--- !u!114 &5866666021824647178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149246578885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9a05792055cb3246a1aba939370317b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _viewvingAngle: 20
 --- !u!4 &5901452235045247228
 Transform:
   m_ObjectHideFlags: 0
