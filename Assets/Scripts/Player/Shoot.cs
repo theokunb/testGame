@@ -1,9 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Zenject;
 
 public class Shoot : MonoBehaviour
 {
-    [SerializeField] private float _viewvingAngle;
+    [SerializeField] private float _viewingAngle;
+    [SerializeField] private Weapon _defaultWeapon;
+
+    [Inject] WeaponService _weaponService;
 
     private NewInput _input;
     private Vector3 _shootDirection;
@@ -19,6 +23,8 @@ public class Shoot : MonoBehaviour
         _input = new NewInput();
         _shootDirection = transform.forward;
         _canShoot = false;
+
+        _weaponService.Euqip(_defaultWeapon);
     }
 
     private void OnEnable()
@@ -45,8 +51,8 @@ public class Shoot : MonoBehaviour
 
     private void CanShoot()
     {
-        var rightRotation = Quaternion.AngleAxis(_viewvingAngle, transform.up);
-        var leftRotation = Quaternion.AngleAxis(-_viewvingAngle, transform.up);
+        var rightRotation = Quaternion.AngleAxis(_viewingAngle, transform.up);
+        var leftRotation = Quaternion.AngleAxis(-_viewingAngle, transform.up);
 
         var right = rightRotation * transform.forward;
         var left = leftRotation * transform.forward;
@@ -76,7 +82,7 @@ public class Shoot : MonoBehaviour
 
         if (_canShoot)
         {
-            Debug.Log("shooting");
+            _weaponService.Shoot(_shootDirection);
         }
     }
 }

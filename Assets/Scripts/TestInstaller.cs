@@ -3,11 +3,13 @@ using Zenject;
 
 public class TestInstaller : MonoInstaller
 {
-    [SerializeField] private Player _player;
+    [SerializeField] private MainHand _mainHand;
+    [SerializeField] private WeaponHold _weaponHold;
 
     public override void InstallBindings()
     {
-        Container.Bind<Player>().FromInstance(_player);
-        Container.Bind<Service2>().AsSingle();
+        Container.Bind<MainHand>().FromInstance(_mainHand);
+        Container.Bind<IWeaponVisitor>().FromInstance(_weaponHold);
+        Container.Bind<WeaponService>().AsSingle();
     }
 }
