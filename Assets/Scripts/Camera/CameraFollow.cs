@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -22,7 +24,7 @@ public class CameraFollow : MonoBehaviour
         var minX = _mapService.MapBounds.Point1.x + _cameraWidth / 2f;
         var maxX = _mapService.MapBounds.Point2.x - _cameraWidth / 2f;
         var minZ = _mapService.MapBounds.Point1.z + _cameraHeight / 2f;
-        var maxZ = _mapService.MapBounds.Point3.z - _cameraHeight / 2f;
+        var maxZ = _mapService.MapBounds.Point2.z - _cameraHeight / 2f;
 
         float targetX = _player.transform.position.x;
         float targetZ = _player.transform.position.z;
