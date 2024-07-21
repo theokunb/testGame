@@ -25,6 +25,8 @@ public class WeaponBonus : Bonus
 
 public class BuffBonus : Bonus
 {
+    public float Duration { get; set; }
+
     public override void Accept(IBonusVisitor visitor)
     {
         visitor.Visit(this);

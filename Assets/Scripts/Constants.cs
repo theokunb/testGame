@@ -35,6 +35,10 @@ public static class Constants
             public static string Pistol = Path.Combine("Prefabs", "Bonus", "Pistol bonus");
             public static string AutoGun = Path.Combine("Prefabs", "Bonus", "AutoGun bonus");
             public static string Shotgun = Path.Combine("Prefabs", "Bonus", "Shotgun bonus");
+
+            public static string Haste = Path.Combine("Prefabs", "Bonus", "HasteBuff");
+            public static string Invincible = Path.Combine("Prefabs", "Bonus", "InvincibleBuff");
+
         }
 
         public static string EnemyContainer = Path.Combine("Prefabs", "Enemy", "New enemy container");

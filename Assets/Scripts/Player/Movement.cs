@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -11,12 +13,25 @@ public class Movement : MonoBehaviour
     private NewInput _input;
     private Animator _animator;
     private Vector2 _animationSmooth;
+    private float _currentMaxSpeed;
+    private HasteBuffComponent _currentBuff;
+
+    private float CurrentSpeed
+    {
+        get => _currentMaxSpeed;
+        set
+        {
+            _currentMaxSpeed = value;
+            StartCoroutine(BuffTask());
+        }
+    }
 
     private void Awake()
     {
         _rigidBody = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();
         _input = new NewInput();
+        _currentMaxSpeed = _maxSpeed;
     }
 
     private void OnEnable()
@@ -41,9 +56,9 @@ public class Movement : MonoBehaviour
             _rigidBody.AddForce(transform.rotation * force);
 
 
-            if(_rigidBody.velocity.magnitude > _maxSpeed)
+            if(_rigidBody.velocity.magnitude > CurrentSpeed)
             {
-                _rigidBody.velocity = transform.rotation * new Vector3(moveValue.x, 0, moveValue.y) * _maxSpeed;
+                _rigidBody.velocity = transform.rotation * new Vector3(moveValue.x, 0, moveValue.y) * CurrentSpeed;
             }
         }
         else
@@ -54,5 +69,24 @@ public class Movement : MonoBehaviour
 
         _animator?.SetFloat(Constants.Animation.SpeedX, _animationSmooth.x);
         _animator?.SetFloat(Constants.Animation.SpeedY, _animationSmooth.y);
+    }
+
+    public void TakeBuff(HasteBuffComponent hasteBuffComponent)
+    {
+        _currentBuff = hasteBuffComponent;
+        CurrentSpeed = _maxSpeed * hasteBuffComponent.HasteBonus;
+    }
+
+    private IEnumerator BuffTask()
+    {
+        var elapsedTime = 0f;
+
+        while(elapsedTime < _currentBuff.Duration)
+        {
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        _currentMaxSpeed = _maxSpeed;
     }
 }
