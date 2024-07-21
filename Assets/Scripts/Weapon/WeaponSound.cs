@@ -6,6 +6,7 @@ public class WeaponSound : MonoBehaviour, IWeaponVisitor
     [SerializeField] private AudioClip _pistol;
     [SerializeField] private AudioClip _autogun;
     [SerializeField] private AudioClip _shotgun;
+    [SerializeField] private AudioClip _granadeLauncher;
 
     [Inject] private SoundContainer _soundContainer;
 
@@ -34,6 +35,16 @@ public class WeaponSound : MonoBehaviour, IWeaponVisitor
         _soundContainer.ConfigureFreeAudioSource(source =>
         {
             source.clip = _shotgun;
+            source.volume = 0.5f;
+            source.loop = false;
+        });
+    }
+
+    public void Visit(GranadeLauncher granadeLauncher)
+    {
+        _soundContainer.ConfigureFreeAudioSource(source =>
+        {
+            source.clip = _granadeLauncher;
             source.volume = 0.5f;
             source.loop = false;
         });

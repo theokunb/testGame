@@ -61,6 +61,11 @@ public class NewWeaponVisitor : INewWeaponVisitor
     {
         Weapons = WeaponContainer.Weapons.Where(element => element.GetType() != shotgun.GetType());
     }
+
+    public void Visit(GranadeLauncher granadeLauncher)
+    {
+        Weapons = WeaponContainer.Weapons.Where(element => element.GetType() != granadeLauncher.GetType());
+    }
 }
 
 public static class EnumerableExtension

@@ -78,7 +78,7 @@ public class Shoot : MonoBehaviour
     private void OnLeftMouse()
     {
         var clickPoint = _camera.ScreenToWorldPoint(_mouse.position.value);
-        _shootDirection = (new Vector3(clickPoint.x, transform.position.y, clickPoint.z) - transform.position).normalized;
+        _shootDirection = (new Vector3(clickPoint.x, transform.position.y, clickPoint.z) - transform.position);
 
         if (_canShoot)
         {

@@ -2,41 +2,41 @@ using UnityEngine;
 
 public class Missile : MonoBehaviour
 {
-    private float _lifeTime;
-    private float _speed;
-    private float _damage;
-    private Vector3 _direction;
-    private Rigidbody _rigidBody;
-    private float _elapsedTime;
+    protected float LifeTime;
+    protected float Speed;
+    protected float Damage;
+    protected Vector3 Direction;
+    protected Rigidbody RigidBody;
+    protected float ElapsedTime;
 
-    private void Awake()
+    protected virtual void Awake()
     {
-        _rigidBody = GetComponent<Rigidbody>();
-        _elapsedTime = 0;
+        RigidBody = GetComponent<Rigidbody>();
+        ElapsedTime = 0;
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
-        _rigidBody.velocity = _direction * _speed;
+        RigidBody.velocity = Direction.normalized * Speed;
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
-        _elapsedTime += Time.fixedDeltaTime;
+        ElapsedTime += Time.fixedDeltaTime;
 
-        if (_elapsedTime >= _lifeTime)
+        if (ElapsedTime >= LifeTime)
         {
-            _rigidBody.velocity = Vector3.zero;
-            _elapsedTime = 0;
+            RigidBody.velocity = Vector3.zero;
+            ElapsedTime = 0;
             gameObject.SetActive(false);
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if(other.TryGetComponent(out Health health))
         {
-            health.TakeDamage(_damage);
+            health.TakeDamage(Damage);
 
             gameObject.SetActive(false);
         }
@@ -44,25 +44,25 @@ public class Missile : MonoBehaviour
 
     public Missile SetupSpeed(float speed)
     {
-        _speed = speed;
+        Speed = speed;
         return this;
     }
 
     public Missile SetupLifeTime(float lifeTime)
     {
-        _lifeTime = lifeTime;
+        LifeTime = lifeTime;
         return this;
     }
 
     public Missile SetupDamage(float damage)
     {
-        _damage = damage;
+        Damage = damage;
         return this;
     }
 
     public Missile SetupDirection(Vector3 direction)
     {
-        _direction = direction;
+        Direction = direction;
         return this;
     }
 }
