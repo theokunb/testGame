@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
+using Zenject;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Movement : MonoBehaviour
@@ -8,6 +10,9 @@ public class Movement : MonoBehaviour
     [SerializeField] private float _acceleration;
     [SerializeField] private float _deceleration;
     [SerializeField] private float _maxSpeed;
+    [SerializeField] private AudioClip[] _steps;
+
+    [Inject] private SoundContainer _container;
 
     private Rigidbody _rigidBody;
     private NewInput _input;
@@ -75,6 +80,18 @@ public class Movement : MonoBehaviour
     {
         _currentBuff = hasteBuffComponent;
         CurrentSpeed = _maxSpeed * hasteBuffComponent.HasteBonus;
+    }
+
+    public void OnStepSound()
+    {
+        int rand = UnityEngine.Random.Range(0, _steps.Count());
+
+        _container.ConfigureFreeAudioSource(source =>
+        {
+            source.clip = _steps[rand];
+            source.volume = 0.2f;
+            source.loop = false;
+        });
     }
 
     private IEnumerator BuffTask()

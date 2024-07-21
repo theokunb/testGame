@@ -9,20 +9,25 @@ public class WeaponService
 
     private Weapon _currentWeapon;
     private Dictionary<string, Weapon> _weapons;
+    private WeaponSound _weaponSound;
 
     public Weapon CurrentWeapon => _currentWeapon;
 
     [Inject]
-    public WeaponService(MainHand mainHand, IWeaponVisitor weaponVisitor)
+    public WeaponService(MainHand mainHand, IWeaponVisitor weaponVisitor, WeaponSound weaponSound)
     {
         _weapons = new Dictionary<string, Weapon>();
         _mainHand = mainHand;
         _weaponVisitor = weaponVisitor;
+        _weaponSound = weaponSound;
     }
 
     public void Shoot(Vector3 shootDirection)
     {
-        _currentWeapon?.Shoot(shootDirection);
+        if (_currentWeapon.Shoot(shootDirection))
+        {
+            _currentWeapon?.Accept(_weaponSound);
+        }
     }
 
     public void Equip(Weapon weapon)
