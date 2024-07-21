@@ -136,4 +136,11 @@ public class BonusWeaponCreator : IWeaponCreatorVisitor
 
         Create(prefab);
     }
+
+    public void Visit(GranadeLauncher granadeLauncher)
+    {
+        var prefab = Resources.Load(Constants.Prefabs.Bonus.GranadeLauncher) as GameObject;
+
+        Create(prefab);
+    }
 }

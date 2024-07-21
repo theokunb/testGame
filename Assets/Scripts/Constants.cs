@@ -23,6 +23,7 @@ public static class Constants
         public static int BaseLayerIndex = 0;
         public static int LegsLayer = 1;
         public static int PistolLayer = 2;
+        public static int GranadeLauncherLayer = 3;
 
         public static string Die = nameof(Die);
     }
@@ -39,6 +40,7 @@ public static class Constants
         public static class Missile
         {
             public static string Bullet = Path.Combine("Prefabs", "Missile", "Bullet");
+            public static string Granade = Path.Combine("Prefabs", "Missile", "Granade");
         }
 
         public static class Bonus
@@ -46,6 +48,7 @@ public static class Constants
             public static string Pistol = Path.Combine("Prefabs", "Bonus", "Pistol bonus");
             public static string AutoGun = Path.Combine("Prefabs", "Bonus", "AutoGun bonus");
             public static string Shotgun = Path.Combine("Prefabs", "Bonus", "Shotgun bonus");
+            public static string GranadeLauncher = Path.Combine("Prefabs", "Bonus", "GranadeLauncher bonus");
 
             public static string Haste = Path.Combine("Prefabs", "Bonus", "HasteBuff");
             public static string Invincible = Path.Combine("Prefabs", "Bonus", "InvincibleBuff");

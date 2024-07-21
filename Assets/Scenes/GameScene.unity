@@ -4685,6 +4685,7 @@ MonoBehaviour:
   _pistol: {fileID: 8300000, guid: e08aa3bb1379b2941ac217ee0e367e23, type: 3}
   _autogun: {fileID: 8300000, guid: 09fbb2e99a2ed904094e01e568e594b8, type: 3}
   _shotgun: {fileID: 8300000, guid: 7df523578f0a0664b82ede0be482c509, type: 3}
+  _granadeLauncher: {fileID: 8300000, guid: c777aad249d9d554bbaa070681a88631, type: 3}
 --- !u!4 &2108771296
 Transform:
   m_ObjectHideFlags: 0
@@ -6523,7 +6524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _viewingAngle: 20
-  _defaultWeapon: {fileID: -7958427337191990205, guid: 9a9d212002dd81f4c86300017ac48cec,
+  _defaultWeapon: {fileID: 6750611927953143936, guid: 0b064b1bdf1b64946a455ef0aa33f3e9,
     type: 3}
 --- !u!114 &5866666021824647179
 MonoBehaviour:
