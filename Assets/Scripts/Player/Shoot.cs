@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
 
-public class Shoot : MonoBehaviour
+public class Shoot : MonoBehaviour, IResetable
 {
     [SerializeField] private float _viewingAngle;
     [SerializeField] private Weapon _defaultWeapon;
@@ -24,7 +24,7 @@ public class Shoot : MonoBehaviour
         _shootDirection = transform.forward;
         _canShoot = false;
 
-        _weaponService.Euqip(_defaultWeapon);
+        _weaponService.Equip(_defaultWeapon);
     }
 
     private void OnEnable()
@@ -84,5 +84,11 @@ public class Shoot : MonoBehaviour
         {
             _weaponService.Shoot(_shootDirection);
         }
+    }
+
+    public void ResetStatus()
+    {
+        _weaponService.ResetStatus();
+        _weaponService.Equip(_defaultWeapon);
     }
 }

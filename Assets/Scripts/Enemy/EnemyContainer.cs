@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New enemy container", menuName = "Enemy container", order = 51)]
-public class EnemyCOntainer : ScriptableObject
+public class EnemyContainer : ScriptableObject
 {
     [SerializeField] private List<EnemyProbability> _probabilities;
 
-    public BaseEnemy GetEnemy()
+    public BaseEnemy GetRandomEnemy()
     {
         var rand = UnityEngine.Random.Range(0, 100);
         var currentProbability = 0;
 
-        foreach(var element in _probabilities)
+        foreach (var element in _probabilities)
         {
-            if(rand >= currentProbability && rand < currentProbability + element.probability)
+            if (rand >= currentProbability && rand < currentProbability + element.probability)
             {
                 return element.prefab;
             }
@@ -25,7 +25,6 @@ public class EnemyCOntainer : ScriptableObject
         return null;
     }
 }
-
 
 [Serializable]
 public class EnemyProbability

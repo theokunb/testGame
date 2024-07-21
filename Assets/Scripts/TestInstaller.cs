@@ -17,5 +17,6 @@ public class TestInstaller : MonoInstaller
         Container.Bind<Player>().FromInstance(_player);
         Container.Bind<Spawner>().AsSingle();
         Container.Bind<IEnemyVisitor>().FromInstance(new PlayerScore()).AsSingle();
+        Container.Bind<EnemyFactory>().AsSingle();
     }
 }

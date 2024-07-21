@@ -57,6 +57,6 @@ public class Health : MonoBehaviour
 
     public void DestroyEnemy()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

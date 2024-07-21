@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class Spawner : MonoBehaviour
+public class Spawner : MonoBehaviour, IResetable
 {
     [SerializeField] private float _baseSpawnDelay;
     [SerializeField] private float _stepDelay;
@@ -12,7 +12,7 @@ public class Spawner : MonoBehaviour
 
     [Inject] private Player _player;
     [Inject] private IMapService _mapService;
-    [Inject] private IEnemyVisitor _enemyVisitor;
+    [Inject] private EnemyFactory _enemyFactory;
 
     private float _width;
     private float _height;
@@ -21,7 +21,6 @@ public class Spawner : MonoBehaviour
     private float _minRadius;
     private float _maxRadius;
     private Camera _camera;
-    private EnemyCOntainer _enemyContainer;
     private List<BaseEnemy> _enemyList;
 
     private void Start()
@@ -43,7 +42,6 @@ public class Spawner : MonoBehaviour
         ResetPlayerPosition();
         StartCoroutine(ReduceSpawnDelay());
 
-        _enemyContainer = Resources.Load(Constants.Prefabs.EnemyContainer) as EnemyCOntainer;
         _enemyList = new List<BaseEnemy>();
     }
 
@@ -55,55 +53,22 @@ public class Spawner : MonoBehaviour
         {
             _elapsedTime = 0;
 
-            if (RandomPoint(out Vector3 position))
-            {
-                var prefab = _enemyContainer.GetEnemy();
-
-                if (prefab == null)
-                {
-                    return;
-                }
-
-                var instance = Instantiate(prefab, position, Quaternion.identity);
-                instance.SetPlayer(_player);
-
-                if (instance.TryGetComponent(out PlayrKiller killer))
-                {
-                    killer.SetPlayer(_player);
-                }
-                if (instance.TryGetComponent(out Health health))
-                {
-                    health.SetEnemyVisitor(_enemyVisitor);
-                }
-
-                _enemyList.Add(instance);
-            }
+            CreateEnemy();
         }
     }
 
-    private bool RandomPoint(out Vector3 point)
+    private void CreateEnemy()
     {
-        int tries = 10;
-
-        while (tries > 0)
+        if (_mapService.GetRandomPoint(_camera.transform.position, _minRadius, _maxRadius, out Vector3 position))
         {
-            tries--;
-            int randAngle = Random.Range(0, 360);
-            float randRadius = Random.Range(_minRadius, _maxRadius);
-
-            var xPos = _camera.transform.position.x + randRadius * Mathf.Cos(randAngle * Mathf.Deg2Rad);
-            var zPos = _camera.transform.position.z + randRadius * Mathf.Sin(randAngle * Mathf.Deg2Rad);
-
-            point = new Vector3(xPos, 0, zPos);
-
-            if (_mapService.IsInner(point))
+            var enemy = _enemyFactory.Create(position);
+            if(enemy == null)
             {
-                return true;
+                return;
             }
-        }
 
-        point = Vector3.zero;
-        return false;
+            _enemyList.Add(enemy);
+        }
     }
 
     private IEnumerator ReduceSpawnDelay()
@@ -124,9 +89,19 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    public void ResetPlayerPosition()
+    private void ResetPlayerPosition()
     {
         var center = new Vector3(_mapService.MapBounds.Point1.x + _width / 2, _mapService.MapBounds.Point1.y, _mapService.MapBounds.Point1.z + _height / 2);
         _player.transform.position = center;
+    }
+
+    public void ResetStatus()
+    {
+        ResetPlayerPosition();
+
+        foreach(var element in _enemyList)
+        {
+            Destroy(element.gameObject);
+        }
     }
 }

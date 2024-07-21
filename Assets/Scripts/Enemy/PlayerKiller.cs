@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-public class PlayrKiller : MonoBehaviour
+public class PlayerKiller : MonoBehaviour
 {
     [SerializeField] private float _killDistance;
 

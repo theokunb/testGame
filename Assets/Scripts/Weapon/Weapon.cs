@@ -67,4 +67,12 @@ public abstract class Weapon : MonoBehaviour
     protected abstract GameObject LoadMissilePrefab();
 
     public abstract void Accept(IWeaponVisitor visitor);
+
+    public void ResetStatus()
+    {
+        foreach(var instance in _pool)
+        {
+            instance.SetActive(false);
+        }
+    }
 }
