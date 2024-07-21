@@ -8,6 +8,8 @@ public class TestInstaller : MonoInstaller
     [SerializeField] private WeaponHold _weaponHold;
     [SerializeField] private TerrainMap _terrainMap;
     [SerializeField] private CameraMap _cameraMap;
+    [SerializeField] private SoundContainer _soundContainer;
+    [SerializeField] private WeaponSound _weaponSound;
 
     public override void InstallBindings()
     {
@@ -24,5 +26,7 @@ public class TestInstaller : MonoInstaller
         Container.Bind<IBonusVisitor>().FromInstance(new BonusFactory()).AsSingle();
         Container.Bind<EndGame>().AsSingle();
         Container.Bind<ScoreStorage>().AsSingle();
+        Container.Bind<SoundContainer>().FromInstance(_soundContainer);
+        Container.Bind<WeaponSound>().FromInstance(_weaponSound);
     }
 }

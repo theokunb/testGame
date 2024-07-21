@@ -42,16 +42,17 @@ public abstract class Weapon : MonoBehaviour
         CanShoot = _elapsedTime <= 0f;
     }
 
-    public void Shoot(Vector3 shootDirection)
+    public bool Shoot(Vector3 shootDirection)
     {
         if (!CanShoot)
         {
-            return;
+            return false;
         }
 
         CreateMissile(shootDirection);
 
         _elapsedTime = _delay;
+        return true;
     }
     private void CreateMissilePool()
     {

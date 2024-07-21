@@ -83,7 +83,7 @@ MonoBehaviour:
   _delay: 0.5
   _damage: 3
   _bulletSpeed: 10
-  _bulletLifeTime: 2.5
+  _bulletLifeTime: 1.5
 --- !u!1 &8504661098936836081
 GameObject:
   m_ObjectHideFlags: 0

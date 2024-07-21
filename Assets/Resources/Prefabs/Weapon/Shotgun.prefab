@@ -83,7 +83,7 @@ MonoBehaviour:
   _delay: 1.5
   _damage: 2
   _bulletSpeed: 12
-  _bulletLifeTime: 2
+  _bulletLifeTime: 1.5
   _bunchSize: 5
   _spread: 10
 --- !u!1 &4185364868849369111
