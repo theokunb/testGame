@@ -79,11 +79,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 0
   _shootPoint: {fileID: 2944389190363471606}
-  _poolSize: 10
+  _poolSize: 15
   _delay: 0.5
   _damage: 3
   _bulletSpeed: 10
-  _bulletLifeTime: 4
+  _bulletLifeTime: 2.5
 --- !u!1 &8504661098936836081
 GameObject:
   m_ObjectHideFlags: 0

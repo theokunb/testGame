@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class Spawner : MonoBehaviour, IResetable
+public class Spawner : MonoBehaviour
 {
     [SerializeField] private float _baseSpawnDelay;
     [SerializeField] private float _stepDelay;
@@ -93,15 +93,5 @@ public class Spawner : MonoBehaviour, IResetable
     {
         var center = new Vector3(_mapService.MapBounds.Point1.x + _width / 2, _mapService.MapBounds.Point1.y, _mapService.MapBounds.Point1.z + _height / 2);
         _player.transform.position = center;
-    }
-
-    public void ResetStatus()
-    {
-        ResetPlayerPosition();
-
-        foreach(var element in _enemyList)
-        {
-            Destroy(element.gameObject);
-        }
     }
 }

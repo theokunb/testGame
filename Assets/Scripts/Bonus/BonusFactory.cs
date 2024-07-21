@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BonusFactory : IBonusVisitor, IResetable
+public class BonusFactory : IBonusVisitor
 {
     private readonly IWeaponCreatorVisitor _weaponCreator;
     private readonly IBuffCreatorVisitor _buffCreator;
@@ -10,11 +10,6 @@ public class BonusFactory : IBonusVisitor, IResetable
     {
         _weaponCreator = new BonusWeaponCreator();
         _buffCreator = new BuffCreatorVisitor();
-    }
-
-    public void ResetStatus()
-    {
-        _weaponCreator.Reset();
     }
 
     public void Visit(WeaponBonus weaponBonus)
@@ -56,8 +51,6 @@ public interface IBonusCreatorVisitor
 {
     Vector3 Position { get; set; }
     float LifeTime { get; set; }
-
-    void Reset();
 }
 
 public class BuffCreatorVisitor : IBuffCreatorVisitor
@@ -67,14 +60,6 @@ public class BuffCreatorVisitor : IBuffCreatorVisitor
     public float Duration { get ; set ; }
     public Vector3 Position { get ; set ; }
     public float LifeTime { get; set; }
-
-    public void Reset()
-    {
-        foreach (var element in _bonuses)
-        {
-            Object.Destroy(element.gameObject);
-        }
-    }
 
     private void Create(GameObject prefab)
     {
@@ -150,13 +135,5 @@ public class BonusWeaponCreator : IWeaponCreatorVisitor
         var prefab = Resources.Load(Constants.Prefabs.Bonus.Shotgun) as GameObject;
 
         Create(prefab);
-    }
-
-    public void Reset()
-    {
-        foreach (var element in _bonuses)
-        {
-            Object.Destroy(element.gameObject);
-        }
     }
 }

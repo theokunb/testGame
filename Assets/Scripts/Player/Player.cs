@@ -1,10 +1,13 @@
 using System.Collections;
 using UnityEngine;
+using Zenject;
 
 public class Player : MonoBehaviour
 {
     private bool _isInvincible = false;
     private InvincibileBuffComponent _currentBuff;
+
+    [Inject] private EndGame _endGame;
 
     private bool IsInvincible
     {
@@ -23,7 +26,7 @@ public class Player : MonoBehaviour
             return;
         }
 
-        Debug.Log("died");
+        _endGame.PlayerDied();
     }
 
     private IEnumerator InvincibleTask()

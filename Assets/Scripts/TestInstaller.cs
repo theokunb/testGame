@@ -22,6 +22,7 @@ public class TestInstaller : MonoInstaller
         Container.Bind<CameraMap>().FromInstance(_cameraMap);
         Container.Bind<INewWeaponVisitor>().FromInstance(new NewWeaponVisitor()).AsSingle();
         Container.Bind<IBonusVisitor>().FromInstance(new BonusFactory()).AsSingle();
-
+        Container.Bind<EndGame>().AsSingle();
+        Container.Bind<ScoreStorage>().AsSingle();
     }
 }
