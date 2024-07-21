@@ -50,6 +50,11 @@ public class Health : MonoBehaviour
                 collider.enabled = false;
             }
 
+            if(TryGetComponent(out PlayerKiller playerKiller))
+            {
+                playerKiller.enabled = false;
+            }
+
             int rand = Random.Range(0, 2);
             _animator?.SetTrigger($"{Constants.Animation.Die}{rand}");
         }
