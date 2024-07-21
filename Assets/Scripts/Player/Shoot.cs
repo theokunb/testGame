@@ -91,4 +91,9 @@ public class Shoot : MonoBehaviour, IResetable
         _weaponService.ResetStatus();
         _weaponService.Equip(_defaultWeapon);
     }
+
+    public void Equip(Weapon weapon)
+    {
+        _weaponService.Equip(weapon);
+    }
 }

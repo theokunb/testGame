@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 22d530c15f22716408caebda81ca0cd3, type: 3}
   m_Name: New enemy container
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyContainer
+  m_EditorClassIdentifier: 
   _probabilities:
   - prefab: {fileID: 1098577331386096196, guid: 59500d32367148e4a8224c5af3d22942,
       type: 3}

@@ -10,6 +10,8 @@ public class WeaponService
     private Weapon _currentWeapon;
     private Dictionary<string, Weapon> _weapons;
 
+    public Weapon CurrentWeapon => _currentWeapon;
+
     [Inject]
     public WeaponService(MainHand mainHand, IWeaponVisitor weaponVisitor)
     {
@@ -25,25 +27,26 @@ public class WeaponService
 
     public void Equip(Weapon weapon)
     {
-        if (_weapons.ContainsKey(weapon.name))
+        if (_weapons.ContainsKey(weapon.Id))
         {
-            AcvivateWeapon(weapon.name);
-            _currentWeapon = _weapons[weapon.name];
+            AcvivateWeapon(weapon.Id);
+            _currentWeapon = _weapons[weapon.Id];
         }
         else
         {
             _currentWeapon = Object.Instantiate(weapon, _mainHand.transform);
-            _weapons.Add(weapon.name, weapon);
+            _weapons.Add(_currentWeapon.Id, _currentWeapon);
+            AcvivateWeapon(_currentWeapon.Id);
         }
 
         _currentWeapon.Accept(_weaponVisitor);
     }
 
-    private void AcvivateWeapon(string weaponName)
+    private void AcvivateWeapon(string weaponId)
     {
         foreach (var element in _weapons.Keys)
         {
-            _weapons[element].gameObject.SetActive(element == weaponName);
+            _weapons[element].gameObject.SetActive(element == weaponId);
         }
     }
 
