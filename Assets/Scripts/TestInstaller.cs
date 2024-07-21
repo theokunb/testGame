@@ -7,6 +7,7 @@ public class TestInstaller : MonoInstaller
     [SerializeField] private MainHand _mainHand;
     [SerializeField] private WeaponHold _weaponHold;
     [SerializeField] private TerrainMap _terrainMap;
+    [SerializeField] private CameraMap _cameraMap;
 
     public override void InstallBindings()
     {
@@ -18,5 +19,9 @@ public class TestInstaller : MonoInstaller
         Container.Bind<Spawner>().AsSingle();
         Container.Bind<IEnemyVisitor>().FromInstance(new PlayerScore()).AsSingle();
         Container.Bind<EnemyFactory>().AsSingle();
+        Container.Bind<CameraMap>().FromInstance(_cameraMap);
+        Container.Bind<INewWeaponVisitor>().FromInstance(new NewWeaponVisitor()).AsSingle();
+        Container.Bind<IBonusVisitor>().FromInstance(new BonusFactory()).AsSingle();
+
     }
 }

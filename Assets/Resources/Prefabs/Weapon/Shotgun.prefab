@@ -77,6 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adc0b30c4b4a75b4c823e20306307772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _id: 2
   _shootPoint: {fileID: 6581291816274117666}
   _poolSize: 25
   _delay: 1.5

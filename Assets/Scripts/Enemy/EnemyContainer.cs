@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New enemy container", menuName = "Enemy container", order = 51)]
+[CreateAssetMenu(fileName = "New enemy container", menuName = "SO/Create enemy container", order = 51)]
 public class EnemyContainer : ScriptableObject
 {
     [SerializeField] private List<EnemyProbability> _probabilities;

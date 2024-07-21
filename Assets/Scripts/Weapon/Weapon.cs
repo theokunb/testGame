@@ -3,6 +3,7 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
+    [SerializeField] private string _id;
     [SerializeField] private Transform _shootPoint;
     [SerializeField] private int _poolSize;
     [SerializeField] private float _delay;
@@ -19,6 +20,8 @@ public abstract class Weapon : MonoBehaviour
     protected float Damage => _damage;
     protected float BulletSpeed => _bulletSpeed;
     protected float BulletLifeTime => _bulletLifeTime;
+
+    public string Id => _id;
 
     protected virtual void Awake()
     {
