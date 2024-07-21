@@ -1,9 +1,7 @@
 using UnityEngine;
 
-public class BonusComponent : MonoBehaviour
+public abstract class BonusComponent : MonoBehaviour
 {
-    [SerializeField] private Weapon _weapon;
-    
     private float _elapsedTime;
 
     public float LifeTime { get; set; }
@@ -26,10 +24,8 @@ public class BonusComponent : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent(out Shoot shoot))
-        {
-            shoot.Equip(_weapon);
-            Destroy(gameObject);
-        }
+        TakeAction(other);
     }
+
+    protected abstract void TakeAction(Collider other);
 }

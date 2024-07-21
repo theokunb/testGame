@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 670755974014714347}
-  - component: {fileID: 5144347348349056091}
   - component: {fileID: 5596712356812321872}
+  - component: {fileID: 177976100831244421}
   m_Layer: 0
   m_Name: Pistol bonus
   m_TagString: Untagged
@@ -35,20 +35,6 @@ Transform:
   - {fileID: 3420848650045108479}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5144347348349056091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7286127623781322762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb990172db809df41bd6971ee1d78827, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weapon: {fileID: -7958427337191990205, guid: 9a9d212002dd81f4c86300017ac48cec,
-    type: 3}
 --- !u!135 &5596712356812321872
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -70,6 +56,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.62
   m_Center: {x: 0, y: 0.3, z: 0}
+--- !u!114 &177976100831244421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7286127623781322762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87dba3f3dbbe4bf46919e5f7b124f797, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weapon: {fileID: -7958427337191990205, guid: 9a9d212002dd81f4c86300017ac48cec,
+    type: 3}
 --- !u!1001 &1503584594885231434
 PrefabInstance:
   m_ObjectHideFlags: 0

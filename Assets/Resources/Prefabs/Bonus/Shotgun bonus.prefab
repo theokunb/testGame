@@ -175,8 +175,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2974595129478078457}
-  - component: {fileID: 2866568030506220414}
   - component: {fileID: 618622437243360552}
+  - component: {fileID: 5331605447671542410}
   m_Layer: 0
   m_Name: Shotgun bonus
   m_TagString: Untagged
@@ -202,19 +202,6 @@ Transform:
   - {fileID: 2576888237220921280}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2866568030506220414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7906699678120457774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb990172db809df41bd6971ee1d78827, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weapon: {fileID: 3144705745625415507, guid: 43f2b4cacd1e8f247a29e54695272a6d, type: 3}
 --- !u!135 &618622437243360552
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -236,6 +223,19 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0.24, z: 0}
+--- !u!114 &5331605447671542410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7906699678120457774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87dba3f3dbbe4bf46919e5f7b124f797, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weapon: {fileID: 3144705745625415507, guid: 43f2b4cacd1e8f247a29e54695272a6d, type: 3}
 --- !u!1001 &1758224314930105461
 PrefabInstance:
   m_ObjectHideFlags: 0

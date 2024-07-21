@@ -4,10 +4,12 @@ using UnityEngine;
 public class BonusFactory : IBonusVisitor, IResetable
 {
     private readonly IWeaponCreatorVisitor _weaponCreator;
+    private readonly IBuffCreatorVisitor _buffCreator;
 
     public BonusFactory()
     {
         _weaponCreator = new BonusWeaponCreator();
+        _buffCreator = new BuffCreatorVisitor();
     }
 
     public void ResetStatus()
@@ -24,7 +26,23 @@ public class BonusFactory : IBonusVisitor, IResetable
 
     public void Visit(BuffBonus buffBonus)
     {
+        _buffCreator.Position = buffBonus.Position;
+        _buffCreator.Duration = buffBonus.Duration;
+        _buffCreator.LifeTime = buffBonus.LifeTime;
 
+        int rand = Random.Range(0, 2);
+        Buff buff;
+
+        if(rand == 0)
+        {
+            buff = new HasteBuff();
+        }
+        else
+        {
+            buff = new InvincibleBuff();
+        }
+
+        buff.Accept(_buffCreator);
     }
 }
 
@@ -34,12 +52,67 @@ public interface IBonusVisitor
     void Visit(BuffBonus buffBonus);
 }
 
-public interface IWeaponCreatorVisitor : IWeaponVisitor
+public interface IBonusCreatorVisitor
 {
     Vector3 Position { get; set; }
     float LifeTime { get; set; }
 
     void Reset();
+}
+
+public class BuffCreatorVisitor : IBuffCreatorVisitor
+{
+    private List<GameObject> _bonuses = new List<GameObject>();
+
+    public float Duration { get ; set ; }
+    public Vector3 Position { get ; set ; }
+    public float LifeTime { get; set; }
+
+    public void Reset()
+    {
+        foreach (var element in _bonuses)
+        {
+            Object.Destroy(element.gameObject);
+        }
+    }
+
+    private void Create(GameObject prefab)
+    {
+        var instance = Object.Instantiate(prefab, Position, Quaternion.identity);
+        _bonuses.Add(instance);
+
+        if (instance.TryGetComponent(out BuffComponent component))
+        {
+            component.LifeTime = LifeTime;
+            component.Duration = Duration;
+        }
+    }
+
+    public void Visit(HasteBuff buff)
+    {
+        var prefab = Resources.Load(Constants.Prefabs.Bonus.Haste) as GameObject;
+
+        Create(prefab);
+    }
+
+    public void Visit(InvincibleBuff buff)
+    {
+        var prefab = Resources.Load(Constants.Prefabs.Bonus.Invincible) as GameObject;
+
+        Create(prefab);
+    }
+}
+
+public interface IBuffCreatorVisitor : IBonusCreatorVisitor
+{
+    public float Duration { get; set; } 
+
+    void Visit(HasteBuff buff);
+    void Visit(InvincibleBuff buff);
+}
+
+public interface IWeaponCreatorVisitor : IWeaponVisitor, IBonusCreatorVisitor
+{
 }
 
 public class BonusWeaponCreator : IWeaponCreatorVisitor
