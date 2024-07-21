@@ -23,7 +23,7 @@ public class WeaponService
         _currentWeapon?.Shoot(shootDirection);
     }
 
-    public void Euqip(Weapon weapon)
+    public void Equip(Weapon weapon)
     {
         if (_weapons.ContainsKey(weapon.name))
         {
@@ -44,6 +44,14 @@ public class WeaponService
         foreach (var element in _weapons.Keys)
         {
             _weapons[element].gameObject.SetActive(element == weaponName);
+        }
+    }
+
+    public void ResetStatus()
+    {
+        foreach(var element in _weapons.Values)
+        {
+            element.ResetStatus();
         }
     }
 }
