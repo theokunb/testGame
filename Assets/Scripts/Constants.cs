@@ -2,6 +2,17 @@ using System.IO;
 
 public static class Constants
 {
+    public static class Prefs
+    {
+        public static string Highscore = nameof(Highscore);
+    }
+
+    public static class SceneIndex
+    {
+        public static int MenuScene = 0;
+        public static int GameScene = 1;
+    }
+
     public static class Animation
     {
         public static string Speed = nameof(Speed);

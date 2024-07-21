@@ -49,12 +49,4 @@ public class WeaponService
             _weapons[element].gameObject.SetActive(element == weaponId);
         }
     }
-
-    public void ResetStatus()
-    {
-        foreach(var element in _weapons.Values)
-        {
-            element.ResetStatus();
-        }
-    }
 }

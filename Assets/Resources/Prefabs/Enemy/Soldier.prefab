@@ -1440,7 +1440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8e0e67c3ebbb8848973ae200f955148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _killDistance: 1.5
+  _killDistance: 1
 --- !u!136 &7712572840735974299
 CapsuleCollider:
   m_ObjectHideFlags: 0

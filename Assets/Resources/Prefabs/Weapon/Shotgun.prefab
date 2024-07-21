@@ -79,11 +79,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 2
   _shootPoint: {fileID: 6581291816274117666}
-  _poolSize: 25
+  _poolSize: 35
   _delay: 1.5
   _damage: 2
   _bulletSpeed: 12
-  _bulletLifeTime: 2.5
+  _bulletLifeTime: 2
   _bunchSize: 5
   _spread: 10
 --- !u!1 &4185364868849369111
