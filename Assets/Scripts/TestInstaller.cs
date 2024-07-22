@@ -28,5 +28,6 @@ public class TestInstaller : MonoInstaller
         Container.Bind<ScoreStorage>().AsSingle();
         Container.Bind<SoundContainer>().FromInstance(_soundContainer);
         Container.Bind<WeaponSound>().FromInstance(_weaponSound);
+        Container.Bind<TerrorZoneService>().AsSingle();
     }
 }
