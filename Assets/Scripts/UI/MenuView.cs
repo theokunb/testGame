@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +10,6 @@ public class MenuView : MonoBehaviour
 
     public void Exit()
     {
-        Environment.Exit(0);
+        Application.Quit();
     }
 }
