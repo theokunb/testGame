@@ -19,17 +19,7 @@ public class Movement : MonoBehaviour
     private Animator _animator;
     private Vector2 _animationSmooth;
     private float _currentMaxSpeed;
-    private HasteBuffComponent _currentBuff;
-
-    private float CurrentSpeed
-    {
-        get => _currentMaxSpeed;
-        set
-        {
-            _currentMaxSpeed = value;
-            StartCoroutine(BuffTask());
-        }
-    }
+    private float _speedModificator = 1;
 
     private void Awake()
     {
@@ -61,9 +51,9 @@ public class Movement : MonoBehaviour
             _rigidBody.AddForce(transform.rotation * force);
 
 
-            if(_rigidBody.velocity.magnitude > CurrentSpeed)
+            if(_rigidBody.velocity.magnitude > _currentMaxSpeed)
             {
-                _rigidBody.velocity = transform.rotation * new Vector3(moveValue.x, 0, moveValue.y) * CurrentSpeed;
+                _rigidBody.velocity = transform.rotation * new Vector3(moveValue.x, 0, moveValue.y) * _currentMaxSpeed * _speedModificator;
             }
         }
         else
@@ -78,8 +68,20 @@ public class Movement : MonoBehaviour
 
     public void TakeBuff(HasteBuffComponent hasteBuffComponent)
     {
-        _currentBuff = hasteBuffComponent;
-        CurrentSpeed = _maxSpeed * hasteBuffComponent.HasteBonus;
+        StartCoroutine(BuffTask(hasteBuffComponent.HasteBonus, hasteBuffComponent.Duration));
+    }
+
+
+    private bool isEternalSlow;
+    public void TakeSlow(SlowZone slowZone)
+    {
+        isEternalSlow = true;
+        StartCoroutine(BuffTask(slowZone.SlowFactor));
+    }
+
+    public void RemoveSlow(SlowZone slowZone)
+    {
+        isEternalSlow = false;
     }
 
     public void OnStepSound()
@@ -94,16 +96,17 @@ public class Movement : MonoBehaviour
         });
     }
 
-    private IEnumerator BuffTask()
+    private IEnumerator BuffTask(float speedModificator, float duration = 0f)
     {
         var elapsedTime = 0f;
+        _speedModificator *= speedModificator;
 
-        while(elapsedTime < _currentBuff.Duration)
+        while (elapsedTime < duration || isEternalSlow)
         {
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        _currentMaxSpeed = _maxSpeed;
+        _speedModificator /= speedModificator;
     }
 }

@@ -506,7 +506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a33f04920449c00438f2fbc02d4803bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _delay: 27
+  _delay: 4
   _lifeTime: 5
   _buffDuration: 10
 --- !u!4 &111152524
@@ -2486,6 +2486,59 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1192303166
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1192303168}
+  - component: {fileID: 1192303167}
+  m_Layer: 0
+  m_Name: TerrorZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1192303167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192303166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a0a93e9ff763a5469041a025b10ca23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _slowZonesCount: 3
+  _slowZoneSize: 3
+  _slowZonePrefab: {fileID: 6111285877563485934, guid: d141abbb2b813ac44bad927dffb75b45,
+    type: 3}
+  _deathZonesCount: 2
+  _deathZoneSize: 1
+  _deathZonePrefab: {fileID: 6111285877563485934, guid: 1f47ead063224f144bf082c803a93d8c,
+    type: 3}
+  _offSet: 3
+--- !u!4 &1192303168
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192303166}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 18.808422, y: 2.5115554, z: 9.38606}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1242289100
 GameObject:
   m_ObjectHideFlags: 0
@@ -6524,7 +6577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _viewingAngle: 20
-  _defaultWeapon: {fileID: 6750611927953143936, guid: 0b064b1bdf1b64946a455ef0aa33f3e9,
+  _defaultWeapon: {fileID: -7958427337191990205, guid: 9a9d212002dd81f4c86300017ac48cec,
     type: 3}
 --- !u!114 &5866666021824647179
 MonoBehaviour:
@@ -7407,3 +7460,4 @@ SceneRoots:
   - {fileID: 111152524}
   - {fileID: 316972486}
   - {fileID: 2108771296}
+  - {fileID: 1192303168}
