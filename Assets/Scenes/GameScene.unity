@@ -506,7 +506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a33f04920449c00438f2fbc02d4803bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _delay: 4
+  _delay: 27
   _lifeTime: 5
   _buffDuration: 10
 --- !u!4 &111152524
@@ -6577,7 +6577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _viewingAngle: 20
-  _defaultWeapon: {fileID: -7958427337191990205, guid: 9a9d212002dd81f4c86300017ac48cec,
+  _defaultWeapon: {fileID: 3702595062496963024, guid: a0aff77a8f5cab142baa956a0cb9ac32,
     type: 3}
 --- !u!114 &5866666021824647179
 MonoBehaviour:

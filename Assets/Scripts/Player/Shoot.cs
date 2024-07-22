@@ -65,14 +65,29 @@ public class Shoot : MonoBehaviour
         rightRotation = Quaternion.LookRotation(right);
         leftRotation = Quaternion.LookRotation(left);
 
-        _canShoot = ConvertAngle(targetRotation.eulerAngles.y) > ConvertAngle(leftRotation.eulerAngles.y) && ConvertAngle(targetRotation.eulerAngles.y) < ConvertAngle(rightRotation.eulerAngles.y);
+        _canShoot = CompareAngles(targetRotation.eulerAngles.y, leftRotation.eulerAngles.y) &&
+            CompareAngles(rightRotation.eulerAngles.y, targetRotation.eulerAngles.y);
     }
 
-    private float ConvertAngle(float angle)
+    /// <summary>
+    /// return eulerAngle1 greater than eulerAngle2
+    /// </summary>
+    /// <param name="eulerAngle1"></param>
+    /// <param name="eulerAngle2"></param>
+    /// <returns></returns>
+    private bool CompareAngles(float eulerAngle1, float eulerAngle2)
     {
-        if (angle > 180)
-            return angle - 360;
-        return angle;
+        var diff = Mathf.Abs(eulerAngle1 - eulerAngle2);
+
+        if(diff < 180)
+        {
+            return eulerAngle1 > eulerAngle2;
+        }
+
+        eulerAngle1 = eulerAngle1 % 180;
+        eulerAngle2 = eulerAngle2 % 180;
+
+        return eulerAngle2 > eulerAngle1;
     }
 
     private void OnLeftMouse()
